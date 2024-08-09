@@ -1,10 +1,10 @@
 class Tile
 {
-Tile(int value);
+Tile(int value = 0);
 
-  int getValue();
+  int getValue() const;
   void setValue(int value);
-  bool isEmpty();
+  bool isEmpty() const;
 
 private:
   int value;
