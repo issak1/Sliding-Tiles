@@ -3,7 +3,17 @@
 
 int main()
 {
-  int size = 3;
+  int size;
+
+  std::cout << "Enter the size of the board (e.g., 3 for a 3x3 board): ";
+  std::cin >> size;
+
+  while (size < 2) 
+  {
+    std::cout << "Invalid size. The board must be at least 2x2. Please enter a valid size: ";
+    std::cin >> size;
+  }
+  
   Board board(size);
   
   board.shuffle();
@@ -22,4 +32,6 @@ int main()
       }
     }
   std::cout << "Congratulations, you have solved the puzzle" << std::endl;
+
+  return 0;
 }
