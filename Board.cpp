@@ -57,3 +57,40 @@ bool Board::moveTile(int tileValue) {
 
     return false;
 }
+
+bool Board::isSolved() const {
+    int value = 1;
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            if (i == size - 1 && j == size - 1) {
+                if (!grid[i][j].isEmpty()) return false;
+            }
+            else if (grid[i][j].getValue() != value++) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+void Board::printBoard() const {
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            if (grid[i][j].isEmpty()) {
+                std::cout << "   ";
+            }
+            else {
+                std::cout << grid[i][j].getValue() << " ";
+            }
+        }
+        std::cout << std::endl;
+    }
+}
+
+void Board::swapTiles(int x1, int y1, int x2, int y2) {
+    std::swap(grid[x1][y1], grid[x2][y2]);
+}
+
+bool Board::isAdjacent(int x1, int y1, int x2, int y2) const {
+    return (x1 == x2 && abs(y1 - y2) == 1) || (y1 == y2 && abs(x1 - x2) == 1);
+}
